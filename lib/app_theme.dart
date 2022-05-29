@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static final _subtitle1Style = GoogleFonts.roboto(
     fontSize: 32,
+    // color: _secondaryColor,
   );
 
   static final _subtitle2Style = GoogleFonts.roboto(

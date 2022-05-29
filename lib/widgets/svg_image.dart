@@ -19,7 +19,7 @@ class SvgImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SvgPicture.asset(
-        Assets.unlockDeviceSvg,
+        'assets/orders.svg',
         width: width,
         height: heigth,
       ),

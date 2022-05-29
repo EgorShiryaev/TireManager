@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tire_manager/assets.dart';
-import 'package:tire_manager/widgets/custom_elevated_button.dart';
 import 'package:tire_manager/widgets/widgets.dart';
 
 class AuthScreen extends StatefulWidget {
