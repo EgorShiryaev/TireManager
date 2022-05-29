@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tire_manager/assets.dart';
+import 'package:tire_manager/widgets/custom_elevated_button.dart';
+import 'package:tire_manager/widgets/widgets.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -9,6 +11,11 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  final loginController = TextEditingController();
+  final loginFocusNode = FocusNode();
+  final passworkController = TextEditingController();
+  final passworkFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,44 +24,32 @@ class _AuthScreenState extends State<AuthScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
+        minimum: const EdgeInsets.only(bottom: 5),
         child: Column(
           children: [
-            Expanded(
-              child: SvgPicture.asset(
-                'assets/auth_image.svg',
-              ),
+            const SvgImage(
+              fileName: Assets.unlockDeviceSvg,
+              width: double.infinity,
             ),
-            Column(
-              children: [
-                Container(
-                  height: 50,
-                  color: Colors.red,
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                Container(
-                  height: 50,
-                  color: Colors.red,
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                Container(
-                  height: 50,
-                  color: Colors.red,
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-              ],
+            CustomTextField(
+              controller: loginController,
+              focusNode: loginFocusNode,
+            ),
+            PassworkTextField(controller: passworkController),
+            CustomElevatedButton(
+              onPressed: () {},
+              title: 'Войти',
             ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    loginController.dispose();
+    passworkController.dispose();
+    super.dispose();
   }
 }

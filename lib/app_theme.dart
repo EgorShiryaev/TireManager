@@ -2,11 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  final  light = ThemeData(
+  static final _subtitle1Style = GoogleFonts.roboto(
+    fontSize: 32,
+  );
+
+  static final _subtitle2Style = GoogleFonts.roboto(
+    fontSize: 20,
+  );
+
+  static final _captionStyle = GoogleFonts.roboto(
+    fontSize: 16,
+  );
+
+  static final _bodyText1Style = GoogleFonts.roboto(
+    fontSize: 16,
+  );
+
+  static final _buttonStyle = GoogleFonts.roboto(
+    color: Colors.white,
+    fontSize: 16,
+  );
+
+  static const _secondaryColor = Colors.green;
+
+  static const _textFieldFillColor = Color.fromARGB(255, 243, 243, 243);
+
+  final light = ThemeData(
     colorScheme: const ColorScheme.light(
       primary: Colors.white,
-      onPrimary: Colors.green,
-      secondary: Colors.green,
+      onPrimary: _secondaryColor,
+      secondary: _secondaryColor,
       onSecondary: Colors.white,
       shadow: Colors.grey,
       surface: Colors.white,
@@ -22,21 +47,29 @@ class AppTheme {
     dividerColor: Colors.grey.shade700,
     highlightColor: Colors.grey.shade100,
     textTheme: TextTheme(
-      subtitle1: GoogleFonts.roboto(
-        color: Colors.black,
-        fontSize: 32,
+      subtitle1: _subtitle1Style,
+      subtitle2: _subtitle2Style,
+      caption: _captionStyle,
+      bodyText1: _bodyText1Style,
+      button: _buttonStyle,
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Colors.black12,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: _textFieldFillColor,
+      hintStyle: _captionStyle,
+      filled: true,
+      border: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        gapPadding: 0,
+        borderRadius: BorderRadius.circular(5.0),
       ),
-      subtitle2: GoogleFonts.roboto(
-        color: Colors.black,
-        fontSize: 20,
-      ),
-      caption: GoogleFonts.roboto(
-        color: Colors.black,
-        fontSize: 16,
-      ),
-      bodyText1: GoogleFonts.roboto(
-        color: Colors.grey.shade700,
-        fontSize: 20,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: _secondaryColor,
+        fixedSize: const Size.fromHeight(55),
       ),
     ),
   );
