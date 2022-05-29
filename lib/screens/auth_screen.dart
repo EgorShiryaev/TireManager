@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tire_manager/assets.dart';
+import 'package:tire_manager/screens/main_menu_screen.dart';
 import 'package:tire_manager/widgets/widgets.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -36,7 +37,12 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             PassworkTextField(controller: passworkController),
             CustomElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MainMenuScreen(),
+                ),
+              ),
               title: 'Войти',
             ),
           ],

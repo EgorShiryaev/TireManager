@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static final _subtitle1Style = GoogleFonts.roboto(
     fontSize: 32,
-    // color: _secondaryColor,
   );
 
   static final _subtitle2Style = GoogleFonts.roboto(
@@ -15,10 +14,6 @@ class AppTheme {
     fontSize: 16,
   );
 
-  static final _bodyText1Style = GoogleFonts.roboto(
-    fontSize: 16,
-  );
-
   static final _buttonStyle = GoogleFonts.roboto(
     color: Colors.white,
     fontSize: 16,
@@ -26,7 +21,7 @@ class AppTheme {
 
   static const _secondaryColor = Colors.green;
 
-  static const _textFieldFillColor = Color.fromARGB(255, 243, 243, 243);
+  static const textFieldFillColor = Color.fromARGB(255, 243, 243, 243);
 
   final light = ThemeData(
     colorScheme: const ColorScheme.light(
@@ -51,14 +46,13 @@ class AppTheme {
       subtitle1: _subtitle1Style,
       subtitle2: _subtitle2Style,
       caption: _captionStyle,
-      bodyText1: _bodyText1Style,
       button: _buttonStyle,
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: Colors.black12,
     ),
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: _textFieldFillColor,
+      fillColor: textFieldFillColor,
       hintStyle: _captionStyle,
       filled: true,
       border: OutlineInputBorder(
@@ -72,6 +66,17 @@ class AppTheme {
         primary: _secondaryColor,
         fixedSize: const Size.fromHeight(55),
       ),
+    ),
+    tabBarTheme: TabBarTheme(
+      indicator: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: _secondaryColor, width: 2),
+        ),
+      ),
+      labelColor: _secondaryColor,
+      labelStyle: _captionStyle,
+      unselectedLabelColor: Colors.black,
+      unselectedLabelStyle: _captionStyle,
     ),
   );
 }

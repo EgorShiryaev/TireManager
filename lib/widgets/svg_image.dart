@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../assets.dart';
 
 class SvgImage extends StatelessWidget {
   final String fileName;
@@ -19,7 +18,7 @@ class SvgImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SvgPicture.asset(
-        'assets/orders.svg',
+        'assets/' + fileName,
         width: width,
         height: heigth,
       ),
