@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tire_manager/app_theme.dart';
-import 'screens/screens.dart';
+
+import 'presentation/screens/screens.dart';
 
 void main() {
   runApp(const TireManagerApp());

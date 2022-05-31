@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tire_manager/assets.dart';
-import 'package:tire_manager/screens/orders_screen.dart';
-import 'package:tire_manager/widgets/main_menu_chapter_icon.dart';
+import 'package:tire_manager/presentation/screens/screens.dart';
+import 'package:tire_manager/presentation/widgets/widgets.dart';
+
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class MainMenuScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            MainMenuChapterIcon(
+            MainMenuChapterButton(
               iconFileName: Assets.ordersPng,
               title: 'Заказы',
               onTap: () {
@@ -36,14 +37,14 @@ class MainMenuScreen extends StatelessWidget {
               needBlackFill: true,
             ),
             const Divider(height: 1),
-            MainMenuChapterIcon(
+            MainMenuChapterButton(
               iconFileName: Assets.servicesPng,
               title: 'Услуги',
               onTap: () {},
               needBlackFill: true,
             ),
             const Divider(height: 1),
-            MainMenuChapterIcon(
+            MainMenuChapterButton(
               iconFileName: Assets.staffPng,
               title: 'Персонал',
               onTap: () {},

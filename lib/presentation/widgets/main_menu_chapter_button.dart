@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MainMenuChapterIcon extends StatelessWidget {
+class MainMenuChapterButton extends StatelessWidget {
   final String iconFileName;
   final String title;
   final void Function() onTap;
   final bool? needBlackFill;
 
-  const MainMenuChapterIcon({
+  const MainMenuChapterButton({
     Key? key,
     required this.iconFileName,
     required this.title,

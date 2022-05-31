@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tire_manager/widgets/orders_screen/orders_list_view.dart';
+
+import '../widgets/widgets.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);
