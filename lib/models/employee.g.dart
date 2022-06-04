@@ -8,7 +8,7 @@ part of 'employee.dart';
 
 class EmployeeAdapter extends TypeAdapter<Employee> {
   @override
-  final int typeId = 3;
+  final int typeId = 2;
 
   @override
   Employee read(BinaryReader reader) {
@@ -17,21 +17,23 @@ class EmployeeAdapter extends TypeAdapter<Employee> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Employee(
-      name: fields[0] as String,
-      surname: fields[1] as String,
-      fatherName: fields[2] as String,
-    );
+      name: fields[1] as String,
+      surname: fields[2] as String,
+      fatherName: fields[3] as String,
+    )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, Employee obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.surname)
+      ..write(obj.name)
       ..writeByte(2)
+      ..write(obj.surname)
+      ..writeByte(3)
       ..write(obj.fatherName);
   }
 

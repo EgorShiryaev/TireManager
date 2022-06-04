@@ -8,7 +8,7 @@ part of 'order.dart';
 
 class OrderAdapter extends TypeAdapter<Order> {
   @override
-  final int typeId = 1;
+  final int typeId = 0;
 
   @override
   Order read(BinaryReader reader) {
@@ -17,7 +17,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Order(
-      orderNumber: fields[0] as int,
+      orderNumber: fields[0] as int?,
       status: fields[1] as String,
       carModel: fields[4] as String,
       clientName: fields[2] as String,

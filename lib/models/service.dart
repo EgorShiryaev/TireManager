@@ -1,15 +1,19 @@
 import 'package:hive/hive.dart';
 part 'service.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 1)
 class Service {
-  /// Название услуги
+  /// id услуги
   @HiveField(0)
+  int? id;
+
+  /// Название услуги
+  @HiveField(1)
   String title;
 
   /// Стоимость услуги (в копейках)
-  @HiveField(1)
+  @HiveField(2)
   int price;
 
-  Service({required this.title, required this.price});
+  Service({this.id, required this.title, required this.price});
 }

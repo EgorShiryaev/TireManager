@@ -1,11 +1,11 @@
 import 'package:hive/hive.dart';
 part 'order.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 class Order {
   /// Номер заказа
   @HiveField(0)
-  final int orderNumber;
+  int? orderNumber;
 
   /// Статус заказа
   @HiveField(1)
@@ -48,7 +48,7 @@ class Order {
   DateTime completeDateTime;
 
   Order({
-    required this.orderNumber,
+    this.orderNumber,
     required this.status,
     required this.carModel,
     required this.clientName,

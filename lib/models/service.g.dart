@@ -8,7 +8,7 @@ part of 'service.dart';
 
 class ServiceAdapter extends TypeAdapter<Service> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
   Service read(BinaryReader reader) {
@@ -17,18 +17,21 @@ class ServiceAdapter extends TypeAdapter<Service> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Service(
-      title: fields[0] as String,
-      price: fields[1] as int,
+      id: fields[0] as int?,
+      title: fields[1] as String,
+      price: fields[2] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Service obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.id)
       ..writeByte(1)
+      ..write(obj.title)
+      ..writeByte(2)
       ..write(obj.price);
   }
 
