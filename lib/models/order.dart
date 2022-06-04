@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+part 'order.g.dart';
 
 @HiveType(typeId: 1)
 class Order {
@@ -30,7 +31,7 @@ class Order {
   @HiveField(6)
   String service;
 
-  /// Стоимость работ
+  /// Стоимость работ (в копейках)
   @HiveField(7)
   int price;
 

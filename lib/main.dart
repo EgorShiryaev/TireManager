@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tire_manager/app_theme.dart';
 import 'screens/screens.dart';
 
-void main() {
+Future<void> main() async {
+  await Hive.initFlutter();
   runApp(const TireManagerApp());
 }
 
