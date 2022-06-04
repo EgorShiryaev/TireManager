@@ -15,7 +15,7 @@ class AuthProvider extends ChangeNotifier {
 
   bool get userIsAuth => datasource.userIsAuth;
 
-  void authorizate(String username, String password) {
+  bool signIn(String username, String password) {
     bool success = false;
     users.forEach((element) {
       if (element.username == username && element.password == password) {
@@ -23,6 +23,12 @@ class AuthProvider extends ChangeNotifier {
       }
     });
     datasource.userIsAuth = success;
+    notifyListeners();
+    return success;
+  }
+
+  void signOut() {
+    datasource.userIsAuth = false;
     notifyListeners();
   }
 }

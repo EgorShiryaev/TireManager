@@ -10,7 +10,7 @@ class LocalDatasource {
   static const _employeesUrl = 'Employees';
 
   Future<void> init() async {
-    await Hive.openLazyBox(_appStateUrl);
+    await Hive.openBox(_appStateUrl);
     await Hive.openLazyBox<Order>(_ordersUrl);
     await Hive.openLazyBox<Service>(_servicesUrl);
     await Hive.openLazyBox<Employee>(_employeesUrl);

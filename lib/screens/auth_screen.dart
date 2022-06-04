@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tire_manager/assets.dart';
+import 'package:tire_manager/providers/auth_provider.dart';
 import 'package:tire_manager/screens/main_menu_screen.dart';
 import 'package:tire_manager/widgets/widgets.dart';
 
@@ -37,18 +39,27 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             PassworkTextField(controller: passworkController),
             CustomElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MainMenuScreen(),
-                ),
-              ),
+              onPressed: _signIn,
               title: 'Войти',
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _signIn() {
+    final result = Provider.of<AuthProvider>(context, listen: false).signIn(
+      loginController.text,
+      passworkController.text,
+    );
+    loginController.clear();
+    passworkController.clear();
+    if (!result) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Не удалось авторизоваться')),
+      );
+    }
   }
 
   @override
