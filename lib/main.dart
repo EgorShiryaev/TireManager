@@ -9,7 +9,8 @@ import 'package:tire_manager/providers/employees_provider.dart';
 import 'package:tire_manager/providers/orders_provider.dart';
 import 'package:tire_manager/providers/services_provider.dart';
 import 'package:tire_manager/screens/main_menu_screen.dart';
-import 'screens/screens.dart';
+
+import 'screens/auth_screen.dart';
 
 Future<void> main() async {
   await initializeDateFormatting();
