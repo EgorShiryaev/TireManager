@@ -6,6 +6,7 @@ class Employee {
   /// id сотрудника
   @HiveField(0)
   int? id;
+
   /// Имя сотрудника
   @HiveField(1)
   String name;
@@ -17,6 +18,8 @@ class Employee {
   /// Отчество сотрудника
   @HiveField(3)
   String fatherName;
+
+  String get initials => '${surname} ${name[0]}. ${fatherName[0]}.';
 
   Employee({
     required this.name,

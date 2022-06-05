@@ -53,4 +53,14 @@ class Order {
     required this.startDateTime,
     required this.employee,
   });
+
+  void setStatusStartDateOrderNumber(
+    String newStatus,
+    DateTime newStartDate,
+    int newOrderNumber,
+  ) {
+    status = newStatus;
+    startDateTime = newStartDate;
+    orderNumber = newOrderNumber;
+  }
 }

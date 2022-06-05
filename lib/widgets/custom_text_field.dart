@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
+  final String hintText;
   final TextEditingController controller;
   final FocusNode focusNode;
 
@@ -8,6 +9,7 @@ class CustomTextField extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.focusNode,
+    required this.hintText,
   }) : super(key: key);
 
   @override
@@ -30,8 +32,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
         style: Theme.of(context).textTheme.caption,
         onEditingComplete: onEditingComplete,
         cursorColor: Colors.black12,
-        decoration: const InputDecoration(hintText: 'Логин')
-            .applyDefaults(Theme.of(context).inputDecorationTheme),
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+        ).applyDefaults(
+          Theme.of(context).inputDecorationTheme,
+        ),
       ),
     );
   }

@@ -78,5 +78,17 @@ class AppTheme {
       unselectedLabelColor: Colors.black,
       unselectedLabelStyle: _captionStyle,
     ),
+    timePickerTheme: TimePickerThemeData(
+      dialTextColor: Colors.black,
+      backgroundColor: Colors.green,
+      hourMinuteColor: Colors.grey.shade400,
+      dayPeriodColor: Colors.grey.shade400,
+      dayPeriodBorderSide: BorderSide.none,
+      entryModeIconColor: Colors.white,
+      helpTextStyle: GoogleFonts.roboto(
+        color: Colors.white,
+        fontSize: 18,
+      ),
+    ),
   );
 }
