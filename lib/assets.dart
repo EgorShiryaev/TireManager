@@ -3,5 +3,5 @@ class Assets {
   static const ordersPng = 'orders.png';
   static const servicesPng = 'services.png';
   static const staffPng = 'staff.png';
-  static const shopBasket = 'shop_backet.png';
+  static const shoppingBasket = 'shopping_basket.png';
 }

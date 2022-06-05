@@ -11,9 +11,9 @@ class LocalDatasource {
 
   Future<void> init() async {
     await Hive.openBox(_appStateUrl);
-    await Hive.openLazyBox<Order>(_ordersUrl);
-    await Hive.openLazyBox<Service>(_servicesUrl);
-    await Hive.openLazyBox<Employee>(_employeesUrl);
+    await Hive.openBox<Order>(_ordersUrl);
+    await Hive.openBox<Service>(_servicesUrl);
+    await Hive.openBox<Employee>(_employeesUrl);
   }
 
   Box get _appStateBox => Hive.box(_appStateUrl);

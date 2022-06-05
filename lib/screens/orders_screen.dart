@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tire_manager/models/order.dart';
+import 'package:tire_manager/models/order_status.dart';
+import 'package:tire_manager/providers/orders_provider.dart';
 import 'package:tire_manager/widgets/orders_screen/orders_list_view.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -10,7 +14,7 @@ class OrdersScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Авторизация'),
+          title: const Text('Заказы'),
           centerTitle: true,
           bottom: const TabBar(
             tabs: [
@@ -19,11 +23,22 @@ class OrdersScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: [
-            OrdersListView(),
-            OrdersListView(),
-          ],
+        body: Consumer<OrdersProvider>(builder: (context, value, _) {
+          final inProcessOrders = <Order>[];
+          final history = <Order>[];
+          value.orders.forEach((element) => element.status == OrderStatus.issued
+              ? history.add(element)
+              : inProcessOrders.add(element));
+          return TabBarView(
+            children: [
+              OrdersListView(orders: inProcessOrders),
+              OrdersListView(orders: history),
+            ],
+          );
+        }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add, size: 32),
         ),
       ),
     );

@@ -24,21 +24,21 @@ class TireManagerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Tire Manager',
-      theme: AppTheme().light,
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-              create: (_) => AuthProvider(datasource: datasource)),
-          ChangeNotifierProvider(
-              create: (_) => EmployeesProvider(datasource: datasource)),
-          ChangeNotifierProvider(
-              create: (_) => OrdersProvider(datasource: datasource)),
-          ChangeNotifierProvider(
-              create: (_) => ServicesProvider(datasource: datasource)),
-        ],
-        child: Consumer<AuthProvider>(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => AuthProvider(datasource: datasource)),
+        ChangeNotifierProvider(
+            create: (_) => EmployeesProvider(datasource: datasource)),
+        ChangeNotifierProvider(
+            create: (_) => OrdersProvider(datasource: datasource)),
+        ChangeNotifierProvider(
+            create: (_) => ServicesProvider(datasource: datasource)),
+      ],
+      child: MaterialApp(
+        title: 'Tire Manager',
+        theme: AppTheme().light,
+        home: Consumer<AuthProvider>(
           builder: (context, value, _) =>
               value.userIsAuth ? const MainMenuScreen() : const AuthScreen(),
         ),

@@ -16,20 +16,20 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   void _signOut() =>
       Provider.of<AuthProvider>(context, listen: false).signOut();
 
+  void _goToOrdersScreen() => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const OrdersScreen()),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: IconButton(
-              onPressed: _signOut,
-              icon: const Icon(
-                Icons.exit_to_app_outlined,
-                size: 40,
-              ),
-            ),
+          IconButton(
+            iconSize: 40,
+            onPressed: _signOut,
+            icon: const Icon(Icons.exit_to_app_outlined),
           ),
         ],
       ),
@@ -39,12 +39,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             MainMenuChapterIcon(
               iconFileName: Assets.ordersPng,
               title: 'Заказы',
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OrdersScreen()));
-              },
+              onTap: _goToOrdersScreen,
               needBlackFill: true,
             ),
             const Divider(height: 1),

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tire_manager/app_theme.dart';
 import 'package:tire_manager/assets.dart';
 
+import '../../models/order.dart';
+
 class OrderWidget extends StatelessWidget {
-  const OrderWidget({Key? key}) : super(key: key);
+  final Order order;
+  const OrderWidget({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,32 +26,33 @@ class OrderWidget extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Theme.of(context).colorScheme.secondary,
                     ),
+                    padding: const EdgeInsets.all(10),
                     child: Image.asset(
-                      'assets/' + Assets.shopBasket,
+                      'assets/' + Assets.shoppingBasket,
                       color: Colors.white,
                     ),
                   ),
                   const SizedBox(width: 10),
                   Column(
-                    children: const [
-                      Text('Заказ #${345}'),
-                      Text('14:30 21.02'),
+                    children: [
+                      Text('Заказ #${order.orderNumber}'),
+                      Text('${order.completeDateTime}'),
                     ],
                   ),
                   const SizedBox(width: 20),
-                  const Align(
+                  Align(
                     alignment: Alignment.bottomCenter,
-                    child: Text('Готов'),
+                    child: Text(order.status),
                   ),
                 ],
               ),
-              const Text('1356.00 ₽')
+              Text('${(order.price / 100).toStringAsFixed(2)} ₽')
             ],
           ),
           const SizedBox(height: 10),
-          _filledContainer('+7 (912) 375 44 - 45'),
+          _filledContainer(order.clientPhoneNumber),
           const SizedBox(height: 10),
-          _filledContainer('BMW x333xx43'),
+          _filledContainer(order.carModel),
         ],
       ),
     );
