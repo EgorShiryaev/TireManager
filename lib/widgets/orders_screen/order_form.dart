@@ -194,10 +194,7 @@ class _OrderFormState extends State<OrderForm> {
           ),
           _divider,
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 5,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20 ),
             child: DropdownButton<Service>(
               style: const TextStyle(fontSize: 20),
               hint: const Text('Услуга'),
@@ -213,10 +210,7 @@ class _OrderFormState extends State<OrderForm> {
           ),
           _divider,
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 5,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: DropdownButton<Employee>(
               style: const TextStyle(fontSize: 20),
               hint: const Text('Сотрудник'),
@@ -231,7 +225,10 @@ class _OrderFormState extends State<OrderForm> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 5,
+            ),
             child: Row(
               children: [
                 Expanded(
