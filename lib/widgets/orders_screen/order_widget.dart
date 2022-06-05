@@ -36,7 +36,7 @@ class OrderWidget extends StatelessWidget {
                   Column(
                     children: [
                       Text('Заказ #${order.orderNumber}'),
-                      Text('${order.completeDateTime}'),
+                      Text('${order.issueDateTime}'),
                     ],
                   ),
                   const SizedBox(width: 20),
@@ -46,11 +46,11 @@ class OrderWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Text('${(order.price / 100).toStringAsFixed(2)} ₽')
+              Text('${(order.service.price / 100).toStringAsFixed(2)} ₽')
             ],
           ),
           const SizedBox(height: 10),
-          _filledContainer(order.clientPhoneNumber),
+          _filledContainer(order.clientPhone),
           const SizedBox(height: 10),
           _filledContainer(order.carModel),
         ],

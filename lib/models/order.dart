@@ -1,4 +1,7 @@
 import 'package:hive/hive.dart';
+import 'package:tire_manager/models/service.dart';
+
+import 'employee.dart';
 part 'order.g.dart';
 
 @HiveType(typeId: 0)
@@ -17,47 +20,37 @@ class Order {
 
   /// Номер телефона клиента
   @HiveField(3)
-  String clientPhoneNumber;
+  String clientPhone;
 
   /// Модель машины
   @HiveField(4)
   String carModel;
 
-  /// Количество машин
+  /// Услуга
   @HiveField(5)
-  String numberCars;
+  Service service;
 
-  /// Название услуги
+  /// Работник
   @HiveField(6)
-  String service;
-
-  /// Стоимость работ (в копейках)
-  @HiveField(7)
-  int price;
-
-  /// Работник, выполняющий работу
-  @HiveField(8)
-  int whoCompleting;
+  Employee employee;
 
   /// Дата начала работ
-  @HiveField(9)
+  @HiveField(7)
   DateTime startDateTime;
 
   /// Дата окончания работ
-  @HiveField(10)
-  DateTime completeDateTime;
+  @HiveField(8)
+  DateTime issueDateTime;
 
   Order({
     this.orderNumber,
     required this.status,
     required this.carModel,
     required this.clientName,
-    required this.clientPhoneNumber,
-    required this.completeDateTime,
-    required this.numberCars,
-    required this.price,
+    required this.clientPhone,
+    required this.issueDateTime,
     required this.service,
     required this.startDateTime,
-    required this.whoCompleting,
+    required this.employee,
   });
 }

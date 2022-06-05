@@ -36,6 +36,7 @@ class _AuthScreenState extends State<AuthScreen> {
             CustomTextField(
               controller: loginController,
               focusNode: loginFocusNode,
+              hintText: 'Логин',
             ),
             PassworkTextField(controller: passworkController),
             CustomElevatedButton(
