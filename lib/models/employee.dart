@@ -22,6 +22,7 @@ class Employee {
   String get initials => '${surname} ${name[0]}. ${fatherName[0]}.';
 
   Employee({
+    this.id,
     required this.name,
     required this.surname,
     required this.fatherName,

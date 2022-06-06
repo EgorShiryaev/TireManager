@@ -10,6 +10,15 @@ class LocalDatasource {
   static const _employeesUrl = 'Employees';
 
   Future<void> init() async {
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(OrderAdapter());
+    }
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(ServiceAdapter());
+    }
+    if (!Hive.isAdapterRegistered(2)) {
+      Hive.registerAdapter(EmployeeAdapter());
+    }
     await Hive.openBox(_appStateUrl);
     await Hive.openBox<Order>(_ordersUrl);
     await Hive.openBox<Service>(_servicesUrl);

@@ -1,12 +1,29 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
+import 'package:tire_manager/screens/employee_form_screen.dart';
 import 'package:tire_manager/widgets/employees_screen/employee_widget.dart';
 
-class EmployeesScreen extends StatelessWidget {
+class EmployeesScreen extends StatefulWidget {
   const EmployeesScreen({Key? key}) : super(key: key);
 
-  void _addService() {}
+  @override
+  State<EmployeesScreen> createState() => _EmployeesScreenState();
+}
+
+class _EmployeesScreenState extends State<EmployeesScreen> {
+  void _addService() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EmployeeFormScreen(
+          save: Provider.of<EmployeesProvider>(context).addEmployee,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +35,7 @@ class EmployeesScreen extends StatelessWidget {
       body: Consumer<EmployeesProvider>(
         builder: (context, value, child) {
           final employees = value.employees;
+          log(employees.toString());
           if (employees.isEmpty) {
             return const Center(
               child: Text(
@@ -28,9 +46,8 @@ class EmployeesScreen extends StatelessWidget {
           }
           return SafeArea(
             child: ListView.separated(
-              itemBuilder: (_, index) => EmployeeWidget(
-                employee: employees[index],
-              ),
+              itemBuilder: (_, index) =>
+                  EmployeeWidget(employee: employees[index]),
               separatorBuilder: (_, __) => const Divider(height: 1),
               itemCount: employees.length,
             ),

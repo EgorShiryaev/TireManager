@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tire_manager/assets.dart';
 import 'package:tire_manager/providers/auth_provider.dart';
+import 'package:tire_manager/screens/employees_screen.dart';
 import 'package:tire_manager/screens/orders_screen.dart';
 import 'package:tire_manager/screens/services_screen.dart';
 import 'package:tire_manager/widgets/main_menu_screen/main_menu_chapter_icon.dart';
@@ -28,6 +29,13 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ServicesScreen()),
+    );
+  }
+
+  void _goToEmployeesScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const EmployeesScreen()),
     );
   }
 
@@ -63,7 +71,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             MainMenuChapterIcon(
               iconFileName: Assets.staffPng,
               title: 'Персонал',
-              onTap: () {},
+              onTap: _goToEmployeesScreen,
             ),
           ],
         ),

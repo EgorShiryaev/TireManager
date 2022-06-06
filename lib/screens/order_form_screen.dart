@@ -31,7 +31,7 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
         centerTitle: true,
       ),
       body: OrderForm(
-        onSave: onSave,
+        save: onSave,
         order: widget.order,
       ),
     );

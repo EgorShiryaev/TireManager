@@ -13,11 +13,11 @@ import '../../models/service.dart';
 
 class OrderForm extends StatefulWidget {
   final Order? order;
-  final void Function(Order order) onSave;
+  final void Function(Order order) save;
   const OrderForm({
     Key? key,
     this.order,
-    required this.onSave,
+    required this.save,
   }) : super(key: key);
 
   @override
@@ -157,13 +157,12 @@ class _OrderFormState extends State<OrderForm> {
           order.orderNumber!,
         );
       }
-      widget.onSave(newOrder);
+      widget.save(newOrder);
+      Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            errors.join('\n\n'),
-          ),
+          content: Text(errors.join('\n\n')),
         ),
       );
     }
@@ -194,15 +193,19 @@ class _OrderFormState extends State<OrderForm> {
           ),
           _divider,
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20 ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: DropdownButton<Service>(
               style: const TextStyle(fontSize: 20),
               hint: const Text('Услуга'),
               value: selectedService,
+              isExpanded: true,
               items: services
                   .map((e) => DropdownMenuItem<Service>(
                         value: e,
-                        child: Text(e.title),
+                        child: Text(
+                          e.title,
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ))
                   .toList(),
               onChanged: onSelectService,
@@ -215,10 +218,14 @@ class _OrderFormState extends State<OrderForm> {
               style: const TextStyle(fontSize: 20),
               hint: const Text('Сотрудник'),
               value: selectedEmployee,
+              isExpanded: true,
               items: employees
                   .map((e) => DropdownMenuItem(
                         value: e,
-                        child: Text(e.initials),
+                        child: Text(
+                          e.initials,
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ))
                   .toList(),
               onChanged: onSelectEmployee,
