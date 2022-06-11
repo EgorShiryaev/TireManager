@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/employee.dart';
-import '../widgets.dart';
+import '../index.dart';
 
 class EmployeeForm extends StatefulWidget {
   final Employee? employee;

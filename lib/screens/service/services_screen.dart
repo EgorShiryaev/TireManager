@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tire_manager/providers/services_provider.dart';
-import '../../widgets/services_screen/service_widget.dart';
+import '../../widgets/index.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class ServicesScreen extends StatelessWidget {
           return SafeArea(
             child: ListView.separated(
               itemBuilder: (_, index) =>
-                  ServiceWidget(service: services[index]),
+                  ServiceCard(service: services[index]),
               separatorBuilder: (_, __) => const Divider(height: 1),
               itemCount: services.length,
             ),

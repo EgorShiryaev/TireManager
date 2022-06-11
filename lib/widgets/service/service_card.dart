@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../models/service.dart';
 
-class ServiceWidget extends StatelessWidget {
+class ServiceCard extends StatelessWidget {
   final Service service;
-  const ServiceWidget({Key? key, required this.service}) : super(key: key);
+  const ServiceCard({Key? key, required this.service}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

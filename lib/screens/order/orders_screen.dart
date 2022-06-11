@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tire_manager/models/order.dart';
-import 'package:tire_manager/models/order_status.dart';
 import 'package:tire_manager/providers/orders_provider.dart';
-import 'package:tire_manager/screens/order/order_form_screen.dart';
-import 'package:tire_manager/widgets/orders_screen/orders_list_view.dart';
+import 'package:tire_manager/screens/order/create_order_screen.dart';
+import 'package:tire_manager/utils/create_route.dart';
+import '../../widgets/index.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -15,12 +14,7 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   _addOrder() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const OrderFormScreen(),
-      ),
-    );
+    Navigator.push(context, createRoute(context, const CreateOrderScreen()));
   }
 
   @override
@@ -40,24 +34,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         body: Consumer<OrdersProvider>(
           builder: (context, value, _) {
-            final inProcessOrders = <Order>[];
-            final history = <Order>[];
-            value.orders.forEach((element) =>
-                element.status == OrderStatus.issued
-                    ? history.add(element)
-                    : inProcessOrders.add(element));
             return TabBarView(
               children: [
-                OrdersListView(orders: inProcessOrders),
-                OrdersListView(orders: history),
+                OrdersListView(orders: value.orders.processing),
+                OrdersListView(orders: value.orders.history),
               ],
             );
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _addOrder,
-          child: const Icon(Icons.add, size: 32),
-        ),
+        floatingActionButton: FloatingAddButton(onPress: _addOrder),
       ),
     );
   }

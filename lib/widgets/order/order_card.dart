@@ -4,9 +4,9 @@ import 'package:tire_manager/assets.dart';
 
 import '../../models/order.dart';
 
-class OrderWidget extends StatelessWidget {
+class OrderCard extends StatelessWidget {
   final Order order;
-  const OrderWidget({Key? key, required this.order}) : super(key: key);
+  const OrderCard({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

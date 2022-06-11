@@ -5,15 +5,15 @@ import 'package:tire_manager/providers/employees_provider.dart';
 import 'package:tire_manager/screens/employee/edit_employee_screen.dart';
 import 'package:tire_manager/utils/create_route.dart';
 
-class EmployeeWidget extends StatefulWidget {
+class EmployeeCard extends StatefulWidget {
   final Employee employee;
-  const EmployeeWidget({Key? key, required this.employee}) : super(key: key);
+  const EmployeeCard({Key? key, required this.employee}) : super(key: key);
 
   @override
-  State<EmployeeWidget> createState() => _EmployeeWidgetState();
+  State<EmployeeCard> createState() => _EmployeeCardState();
 }
 
-class _EmployeeWidgetState extends State<EmployeeWidget> {
+class _EmployeeCardState extends State<EmployeeCard> {
   void onDismissed(_) {
     Provider.of<EmployeesProvider>(context, listen: false)
         .deleteEmployee(widget.employee);

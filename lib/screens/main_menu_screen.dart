@@ -5,7 +5,7 @@ import 'package:tire_manager/providers/auth_provider.dart';
 import 'package:tire_manager/screens/employee/employees_screen.dart';
 import 'package:tire_manager/screens/order/orders_screen.dart';
 import 'package:tire_manager/screens/service/services_screen.dart';
-import 'package:tire_manager/widgets/main_menu_screen/main_menu_chapter_icon.dart';
+import '../../widgets/index.dart';
 
 class MainMenuScreen extends StatefulWidget {
   const MainMenuScreen({Key? key}) : super(key: key);
@@ -54,21 +54,21 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            MainMenuChapterIcon(
+            MainMenuChapterButton(
               iconFileName: Assets.ordersPng,
               title: 'Заказы',
               onTap: _goToOrdersScreen,
               needBlackFill: true,
             ),
             const Divider(height: 1),
-            MainMenuChapterIcon(
+            MainMenuChapterButton(
               iconFileName: Assets.servicesPng,
               title: 'Услуги',
               onTap: _goToServicesScreen,
               needBlackFill: true,
             ),
             const Divider(height: 1),
-            MainMenuChapterIcon(
+            MainMenuChapterButton(
               iconFileName: Assets.staffPng,
               title: 'Персонал',
               onTap: _goToEmployeesScreen,

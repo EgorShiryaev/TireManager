@@ -6,7 +6,7 @@ import 'package:tire_manager/models/employee.dart';
 import 'package:tire_manager/models/order_status.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
 import 'package:tire_manager/providers/services_provider.dart';
-import 'package:tire_manager/widgets/widgets.dart';
+import 'package:tire_manager/widgets/index.dart';
 
 import '../../models/order.dart';
 import '../../models/service.dart';

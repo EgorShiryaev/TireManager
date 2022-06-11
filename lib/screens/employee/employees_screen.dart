@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
 import 'package:tire_manager/screens/employee/create_employee_screen.dart';
 import 'package:tire_manager/utils/create_route.dart';
-import 'package:tire_manager/widgets/employees_screen/employee_widget.dart';
+import '../../widgets/index.dart';
 
 class EmployeesScreen extends StatefulWidget {
   const EmployeesScreen({Key? key}) : super(key: key);
@@ -13,7 +13,6 @@ class EmployeesScreen extends StatefulWidget {
 }
 
 class _EmployeesScreenState extends State<EmployeesScreen> {
-
   void _addService() {
     Navigator.push(context, createRoute(context, const CreateEmployeeScreen()));
   }
@@ -21,35 +20,12 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Персонал'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Персонал')),
       body: Consumer<EmployeesProvider>(
-        builder: (context, value, child) {
-          final employees = value.employees;
-          if (employees.isEmpty) {
-            return const Center(
-              child: Text(
-                'Нет данных!\nДля добавления нажмите кнопку в правом нижнем углу!',
-                textAlign: TextAlign.center,
-              ),
-            );
-          }
-          return SafeArea(
-            child: ListView.separated(
-              itemBuilder: (_, index) =>
-                  EmployeeWidget(employee: employees[index]),
-              separatorBuilder: (_, __) => const Divider(height: 1),
-              itemCount: employees.length,
-            ),
-          );
-        },
+        builder: (context, value, child) =>
+            EmployeesListView(employees: value.employees),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addService,
-        child: const Icon(Icons.add, size: 32),
-      ),
+      floatingActionButton: FloatingAddButton(onPress: _addService),
     );
   }
 }

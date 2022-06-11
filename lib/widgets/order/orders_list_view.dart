@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tire_manager/widgets/no_data_center_text.dart';
 
 import '../../models/order.dart';
-import 'order_widget.dart';
+import 'order_card.dart';
 
 class OrdersListView extends StatelessWidget {
   final List<Order> orders;
@@ -10,18 +11,10 @@ class OrdersListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (orders.isEmpty) {
-      return const Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Center(
-          child: Text(
-            'Нет данных!\nДля добавления нажмите кнопку в правом нижнем углу!',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
+      return const NoDataCenterText();
     }
     return ListView.separated(
-      itemBuilder: (_, index) => OrderWidget(order: orders[index]),
+      itemBuilder: (_, index) => OrderCard(order: orders[index]),
       separatorBuilder: (_, __) => const Divider(height: 1),
       itemCount: orders.length,
     );

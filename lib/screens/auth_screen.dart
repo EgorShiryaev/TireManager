@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tire_manager/assets.dart';
 import 'package:tire_manager/providers/auth_provider.dart';
-import 'package:tire_manager/widgets/widgets.dart';
+import 'package:tire_manager/widgets/index.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
