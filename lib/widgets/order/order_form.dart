@@ -13,11 +13,11 @@ import '../../models/service.dart';
 
 class OrderForm extends StatefulWidget {
   final Order? order;
-  final void Function(Order order) save;
+  final void Function(Order order) onPressButton;
   const OrderForm({
     Key? key,
     this.order,
-    required this.save,
+    required this.onPressButton,
   }) : super(key: key);
 
   @override
@@ -157,7 +157,7 @@ class _OrderFormState extends State<OrderForm> {
           order.orderNumber!,
         );
       }
-      widget.save(newOrder);
+      widget.onPressButton(newOrder);
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

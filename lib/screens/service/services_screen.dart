@@ -15,27 +15,9 @@ class ServicesScreen extends StatelessWidget {
         title: const Text('Услуги'),
         centerTitle: true,
       ),
-      body: Consumer<ServicesProvider>(
-        builder: (context, value, child) {
-          final services = value.services;
-          if (services.isEmpty) {
-            return const Center(
-              child: Text(
-                'Нет данных!\nДля добавления нажмите кнопку в правом нижнем углу!',
-                textAlign: TextAlign.center,
-              ),
-            );
-          }
-          return SafeArea(
-            child: ListView.separated(
-              itemBuilder: (_, index) =>
-                  ServiceCard(service: services[index]),
-              separatorBuilder: (_, __) => const Divider(height: 1),
-              itemCount: services.length,
-            ),
-          );
-        },
-      ),
+      body: Consumer<ServicesProvider>(builder: (context, value, child) {
+        return ServicesListView(services: value.services);
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: _addService,
         child: const Icon(Icons.add, size: 32),

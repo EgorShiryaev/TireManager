@@ -10,7 +10,9 @@ class CreateOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Новый заказ')),
-      body: OrderForm(save: Provider.of<OrdersProvider>(context).addOrder),
+      body: OrderForm(
+        onPressButton: Provider.of<OrdersProvider>(context).addOrder,
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@ class ServicesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateService(Service service) {
+  void editService(Service service) {
     datasource.updateService(service);
     notifyListeners();
   }

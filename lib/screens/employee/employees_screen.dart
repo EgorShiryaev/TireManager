@@ -21,10 +21,9 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Персонал')),
-      body: Consumer<EmployeesProvider>(
-        builder: (context, value, child) =>
-            EmployeesListView(employees: value.employees),
-      ),
+      body: Consumer<EmployeesProvider>(builder: (context, value, child) {
+        return EmployeesListView(employees: value.employees);
+      }),
       floatingActionButton: FloatingAddButton(onPress: _addService),
     );
   }

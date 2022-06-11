@@ -4,12 +4,14 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
   final FocusNode focusNode;
+  final TextInputType? keyboardType;
 
   const CustomTextField({
     Key? key,
     required this.controller,
     required this.focusNode,
     required this.hintText,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         vertical: 5,
       ),
       child: TextField(
+        keyboardType: widget.keyboardType,
         controller: widget.controller,
         focusNode: widget.focusNode,
         style: Theme.of(context).textTheme.caption,

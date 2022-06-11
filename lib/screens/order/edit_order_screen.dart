@@ -13,7 +13,7 @@ class EditOrderScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Заказ №${order.orderNumber}')),
       body: OrderForm(
-        save: Provider.of<OrdersProvider>(context).editOrder,
+        onPressButton: Provider.of<OrdersProvider>(context).editOrder,
         order: order,
       ),
     );
