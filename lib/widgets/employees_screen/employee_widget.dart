@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tire_manager/models/employee.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
-
-import '../../screens/employee_form_screen.dart';
+import 'package:tire_manager/screens/employee/edit_employee_screen.dart';
+import 'package:tire_manager/utils/create_route.dart';
 
 class EmployeeWidget extends StatefulWidget {
   final Employee employee;
@@ -22,12 +22,7 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
   void onTap() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => EmployeeFormScreen(
-          employee: widget.employee,
-          save: Provider.of<EmployeesProvider>(context).updateEmployee,
-        ),
-      ),
+      createRoute(context, EditEmployeeScreen(employee: widget.employee)),
     );
   }
 

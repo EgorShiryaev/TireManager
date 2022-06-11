@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:tire_manager/models/employee.dart';
-import 'package:tire_manager/widgets/widgets.dart';
 
-class EmployeeFormScreen extends StatefulWidget {
+import '../../models/employee.dart';
+import '../widgets.dart';
+
+class EmployeeForm extends StatefulWidget {
   final Employee? employee;
-  final void Function(Employee emp) save;
-  const EmployeeFormScreen({
+  final void Function(Employee emp) onPressButton;
+  const EmployeeForm({
     Key? key,
     this.employee,
-    required this.save,
+    required this.onPressButton,
   }) : super(key: key);
 
   @override
-  State<EmployeeFormScreen> createState() => _EmployeeFormScreenState();
+  State<EmployeeForm> createState() => _EmployeeFormState();
 }
 
-class _EmployeeFormScreenState extends State<EmployeeFormScreen> {
+class _EmployeeFormState extends State<EmployeeForm> {
   final nameController = TextEditingController();
   final nameFocusNode = FocusNode();
   final surnameController = TextEditingController();
@@ -48,7 +49,7 @@ class _EmployeeFormScreenState extends State<EmployeeFormScreen> {
     return errors;
   }
 
-  void onSave() {
+  void onPressButton() {
     final errors = _generateFormValidateErrors();
     if (errors.isEmpty) {
       var newEmployee = Employee(
@@ -59,7 +60,7 @@ class _EmployeeFormScreenState extends State<EmployeeFormScreen> {
       if (widget.employee != null) {
         newEmployee.id = widget.employee!.id;
       }
-      widget.save(newEmployee);
+      widget.onPressButton(newEmployee);
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -72,40 +73,34 @@ class _EmployeeFormScreenState extends State<EmployeeFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.employee?.initials ?? 'Добавление сотрудника'),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                CustomTextField(
-                  controller: surnameController,
-                  focusNode: surnameFocusNode,
-                  hintText: 'Фамилия',
-                ),
-                CustomTextField(
-                  controller: nameController,
-                  focusNode: nameFocusNode,
-                  hintText: 'Имя',
-                ),
-                CustomTextField(
-                  controller: fatherNameController,
-                  focusNode: fatherNameFocusNode,
-                  hintText: 'Отчество',
-                ),
-              ],
-            ),
-            CustomElevatedButton(
-              onPressed: onSave,
-              title: 'Сохранить',
-            ),
-          ],
-        ),
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              CustomTextField(
+                controller: surnameController,
+                focusNode: surnameFocusNode,
+                hintText: 'Фамилия',
+              ),
+              CustomTextField(
+                controller: nameController,
+                focusNode: nameFocusNode,
+                hintText: 'Имя',
+              ),
+              CustomTextField(
+                controller: fatherNameController,
+                focusNode: fatherNameFocusNode,
+                hintText: 'Отчество',
+              ),
+            ],
+          ),
+          CustomElevatedButton(
+            onPressed: onPressButton,
+            title: 'Сохранить',
+          ),
+        ],
       ),
     );
   }

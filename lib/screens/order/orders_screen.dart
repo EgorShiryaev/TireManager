@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tire_manager/models/order.dart';
 import 'package:tire_manager/models/order_status.dart';
 import 'package:tire_manager/providers/orders_provider.dart';
-import 'package:tire_manager/screens/order_form_screen.dart';
+import 'package:tire_manager/screens/order/order_form_screen.dart';
 import 'package:tire_manager/widgets/orders_screen/orders_list_view.dart';
 
 class OrdersScreen extends StatefulWidget {

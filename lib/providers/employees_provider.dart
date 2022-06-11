@@ -15,7 +15,7 @@ class EmployeesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateEmployee(Employee employee) {
+  void editEmployee(Employee employee) {
     datasource.updateEmployee(employee);
     notifyListeners();
   }
