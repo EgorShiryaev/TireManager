@@ -48,14 +48,14 @@ class _ServiceFormState extends State<ServiceForm> {
   void onPressButton() {
     final errors = _generateFormValidateErrors();
     if (errors.isEmpty) {
-      var newEmployee = Service(
+      var newService = Service(
         title: titleController.text,
         price: (double.parse(priceController.text) * 100).toInt(),
       );
       if (widget.service != null) {
-        newEmployee.id = widget.service!.id;
+        newService.id = widget.service?.id;
       }
-      widget.onPressButton(newEmployee);
+      widget.onPressButton(newService);
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

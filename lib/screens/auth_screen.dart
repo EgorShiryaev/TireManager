@@ -20,10 +20,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Авторизация'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Авторизация')),
       body: SafeArea(
         minimum: const EdgeInsets.only(bottom: 5),
         child: Column(

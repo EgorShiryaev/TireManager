@@ -10,6 +10,7 @@ class NoDataCenterText extends StatelessWidget {
       child: Center(
         child: Text(
           'Нет данных!\nДля добавления нажмите кнопку в правом нижнем углу!',
+          textAlign: TextAlign.center,
         ),
       ),
     );

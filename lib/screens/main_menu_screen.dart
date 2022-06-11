@@ -5,6 +5,7 @@ import 'package:tire_manager/providers/auth_provider.dart';
 import 'package:tire_manager/screens/employee/employees_screen.dart';
 import 'package:tire_manager/screens/order/orders_screen.dart';
 import 'package:tire_manager/screens/service/services_screen.dart';
+import 'package:tire_manager/utils/create_route.dart';
 import '../../widgets/index.dart';
 
 class MainMenuScreen extends StatefulWidget {
@@ -19,30 +20,22 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
       Provider.of<AuthProvider>(context, listen: false).signOut();
 
   void _goToOrdersScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const OrdersScreen()),
-    );
+    Navigator.push(context, createRoute(context, const OrdersScreen()));
   }
 
   void _goToServicesScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ServicesScreen()),
-    );
+    Navigator.push(context, createRoute(context, const ServicesScreen()));
   }
 
   void _goToEmployeesScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const EmployeesScreen()),
-    );
+    Navigator.push(context, createRoute(context, const EmployeesScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Главное меню'),
         actions: [
           IconButton(
             iconSize: 40,

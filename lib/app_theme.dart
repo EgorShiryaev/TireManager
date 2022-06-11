@@ -37,7 +37,7 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       toolbarHeight: 70,
     ),
     dividerColor: Colors.grey.shade700,

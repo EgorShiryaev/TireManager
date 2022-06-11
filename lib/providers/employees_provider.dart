@@ -22,5 +22,6 @@ class EmployeesProvider extends ChangeNotifier {
 
   void deleteEmployee(Employee employee) {
     datasource.deleteEmployee(employee.id!);
+    notifyListeners();
   }
 }

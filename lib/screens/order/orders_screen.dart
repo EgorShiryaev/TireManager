@@ -24,7 +24,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Заказы'),
-          centerTitle: true,
           bottom: const TabBar(
             tabs: [
               Tab(text: 'В процессе'),

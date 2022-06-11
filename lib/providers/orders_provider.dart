@@ -33,5 +33,6 @@ class OrdersProvider extends ChangeNotifier {
 
   void deleteOrder(Order order) {
     datasource.deleteOrder(order.orderNumber!);
+     notifyListeners();
   }
 }

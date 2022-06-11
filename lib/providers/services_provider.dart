@@ -22,5 +22,6 @@ class ServicesProvider extends ChangeNotifier {
 
   void deleteService(Service service) {
     datasource.deleteService(service.id!);
+    notifyListeners();
   }
 }
