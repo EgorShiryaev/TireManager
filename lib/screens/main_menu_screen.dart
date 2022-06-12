@@ -38,7 +38,6 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
         title: const Text('Главное меню'),
         actions: [
           IconButton(
-            iconSize: 40,
             onPressed: _signOut,
             icon: const Icon(Icons.exit_to_app_outlined),
           ),
@@ -46,7 +45,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
       ),
       body: SafeArea(
         child: Column(
-          children: [
+          children: [ 
             MainMenuChapterButton(
               iconFileName: Assets.ordersPng,
               title: 'Заказы',

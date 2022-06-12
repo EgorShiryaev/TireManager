@@ -4,6 +4,7 @@ import 'package:tire_manager/models/employee.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
 import 'package:tire_manager/screens/employee/edit_employee_screen.dart';
 import 'package:tire_manager/utils/create_route.dart';
+import 'package:tire_manager/widgets/dismissible_card.dart';
 
 class EmployeeCard extends StatefulWidget {
   final Employee employee;
@@ -14,12 +15,12 @@ class EmployeeCard extends StatefulWidget {
 }
 
 class _EmployeeCardState extends State<EmployeeCard> {
-  void onDismissed(_) {
+  void onDismissed() {
     Provider.of<EmployeesProvider>(context, listen: false)
         .deleteEmployee(widget.employee);
   }
 
-  void onTap() {
+  void onTapCard() {
     Navigator.push(
       context,
       createRoute(context, EditEmployeeScreen(employee: widget.employee)),
@@ -28,29 +29,13 @@ class _EmployeeCardState extends State<EmployeeCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      background: Container(
-        color: Colors.red,
-        alignment: Alignment.centerRight,
-        child: const Icon(
-          Icons.delete_forever,
-          color: Colors.white,
-          size: 32.0,
-        ),
-      ),
-      direction: DismissDirection.endToStart,
-      key: Key('${widget.employee.id!}'),
+    return DismissibleCard(
       onDismissed: onDismissed,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(15.0),
-          child: Text(
-            widget.employee.initials,
-            style: const TextStyle(fontSize: 18),
-          ),
-        ),
+      onTapCard: onTapCard,
+      id: widget.employee.id!,
+      cardContent: Text(
+        widget.employee.initials,
+        style: const TextStyle(fontSize: 18),
       ),
     );
   }

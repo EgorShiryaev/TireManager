@@ -75,13 +75,13 @@ class _ServiceFormState extends State<ServiceForm> {
           Column(
             children: [
               CustomTextField(
-                controller: priceController,
-                focusNode: priceFocusNode,
+                controller: titleController,
+                focusNode: titleFocusNode,
                 hintText: 'Название',
               ),
               CustomTextField(
-                controller: titleController,
-                focusNode: titleFocusNode,
+                controller: priceController,
+                focusNode: priceFocusNode,
                 hintText: 'Стоимость',
                 keyboardType: TextInputType.number,
               ),

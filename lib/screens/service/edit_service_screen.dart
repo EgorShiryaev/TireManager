@@ -17,6 +17,7 @@ class EditServiceScreen extends StatelessWidget {
       appBar: AppBar(title: Text(service.title)),
       body: ServiceForm(
         onPressButton: Provider.of<ServicesProvider>(context).editService,
+        service: service,
       ),
     );
   }

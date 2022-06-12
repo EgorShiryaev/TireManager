@@ -1,18 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:tire_manager/app_theme.dart';
+import 'package:provider/provider.dart';
 import 'package:tire_manager/assets.dart';
-
+import 'package:tire_manager/providers/orders_provider.dart';
+import 'package:tire_manager/screens/order/edit_order_screen.dart';
+import 'package:tire_manager/widgets/filled_container.dart';
 import '../../models/order.dart';
+import '../../utils/create_route.dart';
+import '../dismissible_card.dart';
 
-class OrderCard extends StatelessWidget {
+class OrderCard extends StatefulWidget {
   final Order order;
   const OrderCard({Key? key, required this.order}) : super(key: key);
 
   @override
+  State<OrderCard> createState() => _OrderCardState();
+}
+
+class _OrderCardState extends State<OrderCard> {
+  void onDismissed() {
+    Provider.of<OrdersProvider>(context, listen: false)
+        .deleteOrder(widget.order);
+  }
+
+  void onTapCard() {
+    Navigator.push(
+      context,
+      createRoute(context, EditOrderScreen(order: widget.order)),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
+    return DismissibleCard(
+      onDismissed: onDismissed,
+      onTapCard: onTapCard,
+      id: widget.order.orderNumber!,
+      cardContent: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,40 +58,26 @@ class OrderCard extends StatelessWidget {
                   const SizedBox(width: 10),
                   Column(
                     children: [
-                      Text('Заказ #${order.orderNumber}'),
-                      Text('${order.issueDateTime}'),
+                      Text('Заказ #${widget.order.orderNumber}'),
+                      Text('${widget.order.issueDateTime}'),
                     ],
                   ),
                   const SizedBox(width: 20),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Text(order.status),
+                    child: Text(widget.order.status),
                   ),
                 ],
               ),
-              Text('${(order.service.price / 100).toStringAsFixed(2)} ₽')
+              Text('${(widget.order.service.price / 100).toStringAsFixed(2)} ₽')
             ],
           ),
           const SizedBox(height: 10),
-          _filledContainer(order.clientPhone),
+          FilledContainer(data: widget.order.clientPhone),
           const SizedBox(height: 10),
-          _filledContainer(order.carModel),
+          FilledContainer(data: widget.order.carModel),
         ],
       ),
-    );
-  }
-
-  _filledContainer(String data) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-        color: AppTheme.textFieldFillColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
-      ),
-      child: Text(data),
     );
   }
 }
