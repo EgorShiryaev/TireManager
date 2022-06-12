@@ -2,43 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static final _subtitle1Style = GoogleFonts.roboto(
-    fontSize: 32,
-  );
+  static final _subtitle1Style = GoogleFonts.roboto(fontSize: 32);
 
-  static final _subtitle2Style = GoogleFonts.roboto(
-    fontSize: 20,
-  );
+  static final _subtitle2Style = GoogleFonts.roboto(fontSize: 20);
 
   static final _captionStyle = GoogleFonts.roboto(
     fontSize: 16,
+    color: Colors.black,
   );
 
   static final _buttonStyle = GoogleFonts.roboto(
-    color: Colors.white,
     fontSize: 16,
   );
 
-  static const _secondaryColor = Colors.green;
+  static const _secondaryColor = Colors.white;
+  static const _primaryColor = Colors.green;
 
   static const textFieldFillColor = Color.fromARGB(255, 243, 243, 243);
 
+  static const filledCardDecoration = BoxDecoration(
+    color: AppTheme.textFieldFillColor,
+    borderRadius: BorderRadius.all(Radius.circular(5)),
+  );
+
   final light = ThemeData(
     colorScheme: const ColorScheme.light(
-      primary: Colors.white,
+      primary: _primaryColor,
       onPrimary: _secondaryColor,
       secondary: _secondaryColor,
-      onSecondary: Colors.white,
+      onSecondary: _primaryColor,
       shadow: Colors.grey,
       surface: Colors.white,
       error: Colors.red,
       background: Colors.white,
     ),
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: true,
-      toolbarHeight: 70,
+      titleTextStyle: _subtitle2Style.copyWith(color: _primaryColor),
+      color: _secondaryColor,
+      foregroundColor: _primaryColor,
     ),
     dividerColor: Colors.grey.shade700,
     highlightColor: Colors.grey.shade100,
@@ -53,7 +57,7 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: textFieldFillColor,
-      hintStyle: _captionStyle,
+      hintStyle: _captionStyle.copyWith(color: Colors.grey.shade700),
       filled: true,
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
@@ -63,32 +67,28 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: _secondaryColor,
+        primary: _primaryColor,
         fixedSize: const Size.fromHeight(55),
       ),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: _primaryColor,
+      foregroundColor: _secondaryColor,
     ),
     tabBarTheme: TabBarTheme(
       indicator: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: _secondaryColor, width: 2),
+          bottom: BorderSide(color: _primaryColor, width: 2),
         ),
       ),
-      labelColor: _secondaryColor,
+      labelColor: _primaryColor,
       labelStyle: _captionStyle,
-      unselectedLabelColor: Colors.black,
+      unselectedLabelColor: _primaryColor,
       unselectedLabelStyle: _captionStyle,
     ),
-    timePickerTheme: TimePickerThemeData(
-      dialTextColor: Colors.black,
-      backgroundColor: Colors.green,
-      hourMinuteColor: Colors.grey.shade400,
-      dayPeriodColor: Colors.grey.shade400,
-      dayPeriodBorderSide: BorderSide.none,
-      entryModeIconColor: Colors.white,
-      helpTextStyle: GoogleFonts.roboto(
-        color: Colors.white,
-        fontSize: 18,
-      ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: _primaryColor,
+      contentTextStyle: _captionStyle.copyWith(color: _secondaryColor),
     ),
   );
 }

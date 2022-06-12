@@ -18,24 +18,18 @@ class _PassworkTextFieldState extends State<PassworkTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 20,
-      ),
-      child: TextField(
-        controller: widget.controller,
-        style: Theme.of(context).textTheme.caption,
-        decoration: InputDecoration(
-          hintText: 'Пароль',
-          suffixIcon: IconButton(
-            onPressed: changeVisible,
-            icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
-            color: Colors.grey.shade600,
-          ),
-        ).applyDefaults(Theme.of(context).inputDecorationTheme),
-        obscureText: !visible,
-      ),
+    return TextField(
+      controller: widget.controller,
+      style: Theme.of(context).textTheme.caption,
+      decoration: InputDecoration(
+        hintText: 'Пароль',
+        suffixIcon: IconButton(
+          onPressed: changeVisible,
+          icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+          color: Colors.grey.shade600,
+        ),
+      ).applyDefaults(Theme.of(context).inputDecorationTheme),
+      obscureText: !visible,
     );
   }
 }

@@ -2,13 +2,14 @@ import 'package:hive/hive.dart';
 import 'package:tire_manager/models/service.dart';
 
 import 'employee.dart';
+import 'order_status.dart';
 part 'order.g.dart';
 
 @HiveType(typeId: 0)
 class Order {
   /// Номер заказа
   @HiveField(0)
-  int? orderNumber;
+  int? id;
 
   /// Статус заказа
   @HiveField(1)
@@ -43,7 +44,7 @@ class Order {
   DateTime issueDateTime;
 
   Order({
-    this.orderNumber,
+    this.id,
     required this.status,
     required this.carModel,
     required this.clientName,
@@ -54,6 +55,14 @@ class Order {
     required this.employee,
   });
 
+  void updateStatus() {
+    if (status == OrderStatus.inProcess) {
+      status = OrderStatus.ready;
+    } else {
+      status = OrderStatus.issued;
+    }
+  }
+
   void setStatusStartDateOrderNumber(
     String newStatus,
     DateTime newStartDate,
@@ -61,6 +70,6 @@ class Order {
   ) {
     status = newStatus;
     startDateTime = newStartDate;
-    orderNumber = newOrderNumber;
+    id = newOrderNumber;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tire_manager/widgets/padding_wrapper.dart';
 
 class DismissibleCard extends StatelessWidget {
   final void Function() onDismissed;
@@ -28,14 +29,16 @@ class DismissibleCard extends StatelessWidget {
       direction: DismissDirection.endToStart,
       key: Key('${id}'),
       onDismissed: (_) => onDismissed(),
-      child: InkWell(
-        onTap: onTapCard,
-        child: Card(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(15.0),
-            child: cardContent,
+      child: PaddingWrapper(
+        child: InkWell(
+          onTap: onTapCard,
+          child: Card(
+            margin: const EdgeInsets.all(0),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(15.0),
+              child: cardContent,
+            ),
           ),
         ),
       ),

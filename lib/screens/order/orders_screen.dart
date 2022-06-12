@@ -24,11 +24,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Заказы'),
-          bottom: const TabBar(
-            tabs: [
+          bottom: TabBar(
+            tabs: const [
               Tab(text: 'В процессе'),
               Tab(text: 'История'),
             ],
+            labelStyle: Theme.of(context).textTheme.caption,
           ),
         ),
         body: Consumer<OrdersProvider>(

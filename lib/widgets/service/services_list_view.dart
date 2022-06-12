@@ -16,9 +16,8 @@ class ServicesListView extends StatelessWidget {
       return const NoDataCenterText();
     }
     return SafeArea(
-      child: ListView.separated(
+      child: ListView.builder(
         itemBuilder: (_, index) => ServiceCard(service: services[index]),
-        separatorBuilder: (_, __) => const Divider(height: 1),
         itemCount: services.length,
       ),
     );

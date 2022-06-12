@@ -23,23 +23,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 5,
-      ),
-      child: TextField(
-        keyboardType: widget.keyboardType,
-        controller: widget.controller,
-        focusNode: widget.focusNode,
-        style: Theme.of(context).textTheme.caption,
-        onEditingComplete: onEditingComplete,
-        cursorColor: Colors.black12,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-        ).applyDefaults(
-          Theme.of(context).inputDecorationTheme,
-        ),
+    return TextField(
+      keyboardType: widget.keyboardType,
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      style: Theme.of(context).textTheme.caption,
+      onEditingComplete: onEditingComplete,
+      cursorColor: Colors.black12,
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+      ).applyDefaults(
+        Theme.of(context).inputDecorationTheme,
       ),
     );
   }

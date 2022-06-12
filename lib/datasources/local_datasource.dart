@@ -37,14 +37,14 @@ class LocalDatasource {
     final values = _ordersBox.values.toList();
     final keys = _ordersBox.keys.toList();
     for (var i = 0; i < values.length; i++) {
-      values[i].orderNumber = keys[i];
+      values[i].id = keys[i];
     }
     return values;
   }
 
   void addOrder(Order order) => _ordersBox.add(order);
 
-  void updateOrder(Order order) => _ordersBox.put(order.orderNumber, order);
+  void updateOrder(Order order) => _ordersBox.put(order.id, order);
 
   void deleteOrder(int orderNumber) => _ordersBox.delete(orderNumber);
 

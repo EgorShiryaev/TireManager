@@ -13,9 +13,8 @@ class OrdersListView extends StatelessWidget {
     if (orders.isEmpty) {
       return const NoDataCenterText();
     }
-    return ListView.separated(
+    return ListView.builder(
       itemBuilder: (_, index) => OrderCard(order: orders[index]),
-      separatorBuilder: (_, __) => const Divider(height: 1),
       itemCount: orders.length,
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tire_manager/models/service.dart';
+import 'package:tire_manager/widgets/padding_wrapper.dart';
 import '../index.dart';
 
 class ServiceForm extends StatefulWidget {
@@ -61,6 +62,7 @@ class _ServiceFormState extends State<ServiceForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(errors.join('\n\n')),
+          duration: const Duration(milliseconds: 500),
         ),
       );
     }
@@ -74,22 +76,28 @@ class _ServiceFormState extends State<ServiceForm> {
         children: [
           Column(
             children: [
-              CustomTextField(
-                controller: titleController,
-                focusNode: titleFocusNode,
-                hintText: 'Название',
+              PaddingWrapper(
+                child: CustomTextField(
+                  controller: titleController,
+                  focusNode: titleFocusNode,
+                  hintText: 'Название',
+                ),
               ),
-              CustomTextField(
-                controller: priceController,
-                focusNode: priceFocusNode,
-                hintText: 'Стоимость',
-                keyboardType: TextInputType.number,
+              PaddingWrapper(
+                child: CustomTextField(
+                  controller: priceController,
+                  focusNode: priceFocusNode,
+                  hintText: 'Стоимость',
+                  keyboardType: TextInputType.number,
+                ),
               ),
             ],
           ),
-          CustomElevatedButton(
-            onPressed: onPressButton,
-            title: 'Сохранить',
+          PaddingWrapper(
+            child: CustomElevatedButton(
+              onPressed: onPressButton,
+              title: 'Сохранить',
+            ),
           ),
         ],
       ),

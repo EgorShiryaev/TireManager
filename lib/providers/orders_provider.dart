@@ -13,7 +13,7 @@ class OrdersProvider extends ChangeNotifier {
   SubstractedOrders get orders {
     final processing = <Order>[];
     final history = <Order>[];
-    datasource.orders.forEach(
+    datasource.orders.reversed.forEach(
       (element) => element.status == OrderStatus.issued
           ? history.add(element)
           : processing.add(element),
@@ -32,7 +32,7 @@ class OrdersProvider extends ChangeNotifier {
   }
 
   void deleteOrder(Order order) {
-    datasource.deleteOrder(order.orderNumber!);
-     notifyListeners();
+    datasource.deleteOrder(order.id!);
+    notifyListeners();
   }
 }

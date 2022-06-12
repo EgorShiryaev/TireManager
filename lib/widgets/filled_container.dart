@@ -11,13 +11,8 @@ class FilledContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-        color: AppTheme.textFieldFillColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
-      ),
-      child: Text(data),
+      decoration: AppTheme.filledCardDecoration,
+      child: Text(data, style: Theme.of(context).textTheme.caption),
     );
   }
 }

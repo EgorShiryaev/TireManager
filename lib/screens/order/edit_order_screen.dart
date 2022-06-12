@@ -11,7 +11,7 @@ class EditOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Заказ №${order.orderNumber}')),
+      appBar: AppBar(title: Text('Заказ #${order.id}')),
       body: OrderForm(
         onPressButton: Provider.of<OrdersProvider>(context).editOrder,
         order: order,

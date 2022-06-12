@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
+
+import 'dropdown_value.dart';
 part 'employee.g.dart';
 
 @HiveType(typeId: 2)
-class Employee {
+class Employee extends DropdownValue {
   /// id сотрудника
   @HiveField(0)
   int? id;
@@ -19,12 +21,18 @@ class Employee {
   @HiveField(3)
   String fatherName;
 
-  String get initials => '${surname} ${name[0]}. ${fatherName[0]}.';
-
   Employee({
     this.id,
     required this.name,
     required this.surname,
     required this.fatherName,
   });
+
+  String get initials => '${surname} ${name[0]}. ${fatherName[0]}.';
+
+  @override
+  int? get dropdownId => id;
+
+  @override
+  String get dropdownTitle => initials;
 }

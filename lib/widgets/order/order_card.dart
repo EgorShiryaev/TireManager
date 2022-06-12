@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tire_manager/assets.dart';
 import 'package:tire_manager/providers/orders_provider.dart';
@@ -7,6 +9,7 @@ import 'package:tire_manager/widgets/filled_container.dart';
 import '../../models/order.dart';
 import '../../utils/create_route.dart';
 import '../dismissible_card.dart';
+import 'shopping_basket_circle.dart';
 
 class OrderCard extends StatefulWidget {
   final Order order;
@@ -17,6 +20,12 @@ class OrderCard extends StatefulWidget {
 }
 
 class _OrderCardState extends State<OrderCard> {
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting();
+  }
+
   void onDismissed() {
     Provider.of<OrdersProvider>(context, listen: false)
         .deleteOrder(widget.order);
@@ -31,46 +40,58 @@ class _OrderCardState extends State<OrderCard> {
 
   @override
   Widget build(BuildContext context) {
+    final issueDateTime =
+        '${DateFormat.Hm('ru').format(widget.order.issueDateTime)} ${DateFormat.Md('ru').format(widget.order.issueDateTime)}';
     return DismissibleCard(
       onDismissed: onDismissed,
       onTapCard: onTapCard,
-      id: widget.order.orderNumber!,
+      id: widget.order.id!,
       cardContent: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.secondary,
+          SizedBox(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const ShoppingBasketCircle(),
+                    const SizedBox(width: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Заказ #${widget.order.id}',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                        Text(
+                          issueDateTime,
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      ],
                     ),
-                    padding: const EdgeInsets.all(10),
-                    child: Image.asset(
-                      'assets/' + Assets.shoppingBasket,
-                      color: Colors.white,
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      widget.order.status,
+                      style: Theme.of(context).textTheme.caption,
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    children: [
-                      Text('Заказ #${widget.order.orderNumber}'),
-                      Text('${widget.order.issueDateTime}'),
-                    ],
-                  ),
-                  const SizedBox(width: 20),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(widget.order.status),
-                  ),
-                ],
-              ),
-              Text('${(widget.order.service.price / 100).toStringAsFixed(2)} ₽')
-            ],
+                    Text(
+                      '${(widget.order.service.price / 100).toStringAsFixed(2)} ₽',
+                      style: Theme.of(context).textTheme.caption!.copyWith(
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
           const SizedBox(height: 10),
           FilledContainer(data: widget.order.clientPhone),

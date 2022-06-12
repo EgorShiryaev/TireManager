@@ -4,6 +4,8 @@ import 'package:tire_manager/assets.dart';
 import 'package:tire_manager/providers/auth_provider.dart';
 import 'package:tire_manager/widgets/index.dart';
 
+import '../widgets/padding_wrapper.dart';
+
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
@@ -22,22 +24,27 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Авторизация')),
       body: SafeArea(
-        minimum: const EdgeInsets.only(bottom: 5),
         child: Column(
           children: [
             const SvgImage(
               fileName: Assets.unlockDeviceSvg,
               width: double.infinity,
             ),
-            CustomTextField(
-              controller: loginController,
-              focusNode: loginFocusNode,
-              hintText: 'Логин',
+            PaddingWrapper(
+              child: CustomTextField(
+                controller: loginController,
+                focusNode: loginFocusNode,
+                hintText: 'Логин',
+              ),
             ),
-            PassworkTextField(controller: passworkController),
-            CustomElevatedButton(
-              onPressed: _signIn,
-              title: 'Войти',
+            PaddingWrapper(
+              child: PassworkTextField(controller: passworkController),
+            ),
+            PaddingWrapper(
+              child: CustomElevatedButton(
+                onPressed: _signIn,
+                title: 'Войти',
+              ),
             ),
           ],
         ),
@@ -54,7 +61,10 @@ class _AuthScreenState extends State<AuthScreen> {
     passworkController.clear();
     if (!result) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Не удалось авторизоваться')),
+        const SnackBar(
+          content: Text('Не удалось авторизоваться'),
+          duration: Duration(milliseconds: 500),
+        ),
       );
     }
   }

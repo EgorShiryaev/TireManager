@@ -17,9 +17,8 @@ class EmployeesListView extends StatelessWidget {
       return const NoDataCenterText();
     }
     return SafeArea(
-      child: ListView.separated(
+      child: ListView.builder(
         itemBuilder: (_, index) => EmployeeCard(employee: employees[index]),
-        separatorBuilder: (_, __) => const Divider(height: 1),
         itemCount: employees.length,
       ),
     );

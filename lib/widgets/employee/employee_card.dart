@@ -35,7 +35,7 @@ class _EmployeeCardState extends State<EmployeeCard> {
       id: widget.employee.id!,
       cardContent: Text(
         widget.employee.initials,
-        style: const TextStyle(fontSize: 18),
+        style: Theme.of(context).textTheme.caption,
       ),
     );
   }

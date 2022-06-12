@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tire_manager/widgets/padding_wrapper.dart';
 
 import '../../models/employee.dart';
 import '../index.dart';
@@ -66,6 +67,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(errors.join('\n\n')),
+          duration: const Duration(milliseconds: 500),
         ),
       );
     }
@@ -79,26 +81,34 @@ class _EmployeeFormState extends State<EmployeeForm> {
         children: [
           Column(
             children: [
-              CustomTextField(
-                controller: surnameController,
-                focusNode: surnameFocusNode,
-                hintText: 'Фамилия',
+              PaddingWrapper(
+                child: CustomTextField(
+                  controller: surnameController,
+                  focusNode: surnameFocusNode,
+                  hintText: 'Фамилия',
+                ),
               ),
-              CustomTextField(
-                controller: nameController,
-                focusNode: nameFocusNode,
-                hintText: 'Имя',
+              PaddingWrapper(
+                child: CustomTextField(
+                  controller: nameController,
+                  focusNode: nameFocusNode,
+                  hintText: 'Имя',
+                ),
               ),
-              CustomTextField(
-                controller: fatherNameController,
-                focusNode: fatherNameFocusNode,
-                hintText: 'Отчество',
+              PaddingWrapper(
+                child: CustomTextField(
+                  controller: fatherNameController,
+                  focusNode: fatherNameFocusNode,
+                  hintText: 'Отчество',
+                ),
               ),
             ],
           ),
-          CustomElevatedButton(
-            onPressed: onPressButton,
-            title: 'Сохранить',
+          PaddingWrapper(
+            child: CustomElevatedButton(
+              onPressed: onPressButton,
+              title: 'Сохранить',
+            ),
           ),
         ],
       ),

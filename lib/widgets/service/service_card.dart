@@ -36,8 +36,16 @@ class _ServiceCardState extends State<ServiceCard> {
       cardContent: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: Text(widget.service.title)),
-          Text('${(widget.service.price / 100).toStringAsFixed(2)} ₽')
+          Expanded(
+            child: Text(
+              widget.service.title,
+              style: Theme.of(context).textTheme.caption,
+            ),
+          ),
+          Text(
+            '${(widget.service.price / 100).toStringAsFixed(2)} ₽',
+            style: Theme.of(context).textTheme.caption,
+          )
         ],
       ),
     );

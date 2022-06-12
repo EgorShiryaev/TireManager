@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -5,11 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:tire_manager/models/employee.dart';
 import 'package:tire_manager/models/order_status.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
+import 'package:tire_manager/providers/orders_provider.dart';
 import 'package:tire_manager/providers/services_provider.dart';
 import 'package:tire_manager/widgets/index.dart';
-
+import 'package:tire_manager/widgets/order/dropdown_field.dart';
 import '../../models/order.dart';
 import '../../models/service.dart';
+import '../padding_wrapper.dart';
 
 class OrderForm extends StatefulWidget {
   final Order? order;
@@ -70,13 +74,11 @@ class _OrderFormState extends State<OrderForm> {
     super.initState();
   }
 
-  void onSelectService(Service? service) =>
-      setState(() => selectedService = service);
+  void onSelectService(int? id) => setState(() =>
+      selectedService = services.firstWhere((element) => element.id == id));
 
-  void onSelectEmployee(Employee? employee) =>
-      setState(() => selectedEmployee = employee);
-
-  final Widget _divider = const SizedBox(height: 10);
+  void onSelectEmployee(int? id) => setState(() =>
+      selectedEmployee = employees.firstWhere((element) => element.id == id));
 
   Future<void> _selectDate() async {
     final now = DateTime.now();
@@ -154,7 +156,7 @@ class _OrderFormState extends State<OrderForm> {
         newOrder.setStatusStartDateOrderNumber(
           order.status,
           order.startDateTime,
-          order.orderNumber!,
+          order.id!,
         );
       }
       widget.onPressButton(newOrder);
@@ -163,116 +165,101 @@ class _OrderFormState extends State<OrderForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(errors.join('\n\n')),
+          duration: const Duration(milliseconds: 500),
         ),
       );
     }
+  }
+
+  void _changeStatus() {
+    final order = widget.order!..updateStatus();
+    Provider.of<OrdersProvider>(context, listen: false).editOrder(order);
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
-          CustomTextField(
-            controller: clientNameController,
-            focusNode: clientNameFocusNode,
-            hintText: 'Фио клиента',
-          ),
-          _divider,
-          CustomTextField(
-            controller: clientPhoneController,
-            focusNode: clientPhoneFocusNode,
-            hintText: 'Телефон клиента',
-          ),
-          _divider,
-          CustomTextField(
-            controller: carModelController,
-            focusNode: carModelFocusNode,
-            hintText: 'Модель машины',
-          ),
-          _divider,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: DropdownButton<Service>(
-              style: const TextStyle(fontSize: 20),
-              hint: const Text('Услуга'),
-              value: selectedService,
-              isExpanded: true,
-              items: services
-                  .map((e) => DropdownMenuItem<Service>(
-                        value: e,
-                        child: Text(
-                          e.title,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ))
-                  .toList(),
-              onChanged: onSelectService,
+          PaddingWrapper(
+            child: CustomTextField(
+              controller: clientNameController,
+              focusNode: clientNameFocusNode,
+              hintText: 'ФИО клиента',
             ),
           ),
-          _divider,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: DropdownButton<Employee>(
-              style: const TextStyle(fontSize: 20),
-              hint: const Text('Сотрудник'),
-              value: selectedEmployee,
-              isExpanded: true,
-              items: employees
-                  .map((e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(
-                          e.initials,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ))
-                  .toList(),
-              onChanged: onSelectEmployee,
+          PaddingWrapper(
+            child: CustomTextField(
+              controller: clientPhoneController,
+              focusNode: clientPhoneFocusNode,
+              hintText: 'Телефон клиента',
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 5,
+          PaddingWrapper(
+            child: CustomTextField(
+              controller: carModelController,
+              focusNode: carModelFocusNode,
+              hintText: 'Модель машины',
             ),
+          ),
+          PaddingWrapper(
+            child: DropdownField(
+              values: services,
+              emptyText: 'Нет данных об услугах!',
+              notContainedSelectedValueText: 'Услуга не найдена',
+              hintText: 'Выберите услугу',
+              onSelect: onSelectService,
+              selectedValue: selectedService,
+            ),
+          ),
+          PaddingWrapper(
+            child: DropdownField(
+              values: employees,
+              emptyText: 'Нет данных о сотрудниках!',
+              notContainedSelectedValueText: 'Сотрудник не найден',
+              hintText: 'Выберите сотрудника',
+              onSelect: onSelectEmployee,
+              selectedValue: selectedEmployee,
+            ),
+          ),
+          PaddingWrapper(
             child: Row(
               children: [
                 Expanded(
                   flex: 2,
-                  child: ElevatedButton(
+                  child: CustomElevatedButton(
                     onPressed: _selectTime,
-                    child: Center(
-                      child: Text(
-                        DateFormat.Hm('ru').format(
-                          DateTime(
-                              2022, 1, 1, issueTime.hour, issueTime.minute),
-                        ),
-                        style: Theme.of(context).textTheme.button,
-                      ),
+                    title: DateFormat.Hm('ru').format(
+                      DateTime(2022, 1, 1, issueTime.hour, issueTime.minute),
                     ),
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   flex: 3,
-                  child: ElevatedButton(
+                  child: CustomElevatedButton(
                     onPressed: _selectDate,
-                    child: Center(
-                      child: Text(
-                        DateFormat.yMMMMd('ru').format(issueDate),
-                        style: Theme.of(context).textTheme.button,
-                      ),
-                    ),
+                    title: DateFormat.yMMMMd('ru').format(issueDate),
                   ),
                 ),
               ],
             ),
           ),
-          CustomElevatedButton(
-            onPressed: _onPressButton,
-            title: 'Сохранить',
-          )
+          PaddingWrapper(
+            child: CustomElevatedButton(
+              onPressed: _onPressButton,
+              title: 'Сохранить',
+            ),
+          ),
+          widget.order != null && widget.order?.status != OrderStatus.issued
+              ? PaddingWrapper(
+                  child: CustomElevatedButton(
+                    onPressed: _changeStatus,
+                    title: 'Изменить статус',
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );

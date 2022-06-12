@@ -12,15 +12,13 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Center(
-          child: Text(
-            title,
-            style: Theme.of(context).textTheme.button,
-          ),
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Center(
+        child: Text(
+          title,
+          style:
+              Theme.of(context).textTheme.button!.copyWith(color: Colors.white),
         ),
       ),
     );
