@@ -9,6 +9,7 @@ import 'package:tire_manager/models/order_status.dart';
 import 'package:tire_manager/providers/employees_provider.dart';
 import 'package:tire_manager/providers/orders_provider.dart';
 import 'package:tire_manager/providers/services_provider.dart';
+import 'package:tire_manager/utils/datetime_helper.dart';
 import 'package:tire_manager/widgets/index.dart';
 import 'package:tire_manager/widgets/order/dropdown_field.dart';
 import '../../models/order.dart';
@@ -61,15 +62,10 @@ class _OrderFormState extends State<OrderForm> {
       carModelController.text = order.carModel;
       selectedService = order.service;
       selectedEmployee = order.employee;
-      issueDate = DateTime(
-        order.issueDateTime.year,
-        order.issueDateTime.month,
-        order.issueDateTime.day,
-      );
-      issueTime = TimeOfDay(
-        hour: order.issueDateTime.hour,
-        minute: order.issueDateTime.minute,
-      );
+
+      issueDate = DateTimeHelper.convertDateTimeToDate(order.issueDateTime);
+      issueTime =
+          DateTimeHelper.convertDateTimeToTimeOfDay(order.issueDateTime);
     }
     super.initState();
   }
@@ -132,12 +128,9 @@ class _OrderFormState extends State<OrderForm> {
   void _onPressButton() {
     final errors = _generateFormValidateErrors();
     if (errors.isEmpty) {
-      final issueDateTime = DateTime(
-        issueDate.year,
-        issueDate.month,
-        issueDate.day,
-        issueTime.hour,
-        issueTime.minute,
+      final issueDateTime = DateTimeHelper.convertDateAndTimeOfDayToDateTime(
+        issueDate,
+        issueTime,
       );
 
       var newOrder = Order(
