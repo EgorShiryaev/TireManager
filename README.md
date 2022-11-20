@@ -1,23 +1,48 @@
-# Введение
+# TireManager
 
-Цель проекта - разработать мобильное приложение для управления автомастерской.
+Мобильное приложение для управления автомастерской.
 
-Задачи:
+Apk файл можно скачать [тут](https://github.com/EgorShiryaev/TireManager/releases).
 
-1. Изучить методы работы с Hive
+## Начало работы
 
-# Начало работы
+Перед запуском приложения необходимо установить все программное обеспечение перечисленное в разделе "Необходимое ПО". 
 
-Необходим Flutter 2.16.2 и выше
+Только после того как у вас установлено всё ПО, вы можете переходить к разделу "Запуск приложения".
 
-# Сборка и тестирование
+### Необходимое ПО
 
-Для сборки приложения необходимо в терминале выполнить команды:
+- [flutter 2.16.2 и выше](https://docs.flutter.dev/development/tools/sdk/releases)
+- [Xcode](https://apps.apple.com/ru/app/xcode/id497799835?mt=12)
+- [Android Studio](https://developer.android.com/studio)
+- [Visual Studio Code](https://code.visualstudio.com/)
 
-- flutter pub get
-- flutter run
+После того как скачается flutter, следуйте этим [инструкциям](https://docs.flutter.dev/get-started/install).
 
-# Скрины
+Для настройки редактора кода, следуйте этим [инструкциям](https://docs.flutter.dev/get-started/editor?tab=vscode).
+
+### Запуск приложения
+
+Откройте проект в редакторе кода. Запустите терминал в папке проекта. Затем установите все необходимые пакеты командой:
+
+```
+flutter pub get
+```
+
+После успешной загрузки пакетов запустите эмулятор и напишите команду в терминал:
+
+```
+flutter run
+```
+
+Подробнее о запуске приложения flutter можно узнать [тут](https://docs.flutter.dev/get-started/test-drive?tab=vscode).
+
+## Разработка
+
+Базой данной является hive (https://pub.dev/packages/hive)
+
+## Скрины
+
 ![LoginPage](https://user-images.githubusercontent.com/80877621/196958144-af6d13a3-2789-4692-b904-1aaa3628a334.png)
 ![MenuPage](https://user-images.githubusercontent.com/80877621/196958145-79909d36-dd3f-4a2f-9333-03760d94b193.png)
 
@@ -35,8 +60,3 @@
 
 ![AddPersonalPage](https://user-images.githubusercontent.com/80877621/196958126-174bf8fc-b66f-4c9b-844f-0a148d7be658.png)
 ![EditPersonalPage](https://user-images.githubusercontent.com/80877621/196958139-71868f31-0cd8-4024-910f-565b2a80ece1.png)
-
-
-
-
-
