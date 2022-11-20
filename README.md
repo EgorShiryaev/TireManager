@@ -39,7 +39,7 @@ flutter run
 
 ## Разработка
 
-Базой данной является hive (https://pub.dev/packages/hive)
+Базой данной является [hive](https://pub.dev/packages/hive)
 
 ## Скрины
 
